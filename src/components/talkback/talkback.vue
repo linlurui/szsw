@@ -1598,8 +1598,8 @@ export default {
 
     // 地图鼠标弹窗
     on(e) {
-      let lng = e.target.F.position.lng;
-      let lat = e.target.F.position.lat;
+      let lng = e.target.B.position.lng;
+      let lat = e.target.B.position.lat;
       this.videoList.forEach(a => {
         if (Number(a.longitude) == lng && Number(a.latitude) == lat) {
           this.infoWindow = new AMap.InfoWindow({
