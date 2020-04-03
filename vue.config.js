@@ -1,6 +1,12 @@
+/*
+ * @Date         : 2019-12-20 19:11:39
+ * @LastEditors  : HaoJie
+ * @LastEditTime : 2020-04-03 15:27:33
+ * @FilePath     : \vue.config.js
+ */
 module.exports = {
     lintOnSave:false, //关闭eslint的检查功能
-    baseUrl:'./', //打包出来的index.html能加载我们打包出来的app.js
+    publicPath: './', //打包出来的index.html能加载我们打包出来的app.js
     productionSourceMap:false, //生产环境打包的时候，不需要打包sourceMap文件
     // configureWebpack:{
     //     externals: { 
