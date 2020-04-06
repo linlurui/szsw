@@ -1,9 +1,14 @@
 /*
  * @Date         : 2019-12-20 19:11:39
  * @LastEditors  : HaoJie
- * @LastEditTime : 2020-04-03 15:27:33
+ * @LastEditTime : 2020-04-06 11:27:56
  * @FilePath     : \vue.config.js
  */
+const path = require('path');
+
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
 module.exports = {
     lintOnSave:false, //关闭eslint的检查功能
     publicPath: './', //打包出来的index.html能加载我们打包出来的app.js
@@ -31,7 +36,11 @@ module.exports = {
       externals: {
         echarts: 'echarts'
       }
-    },
+  },
+    chainWebpack: (config) => {
+      config.resolve.alias
+        .set('images', resolve('static/images'));
+    }
 
     // 打开的时候build可以看到包的大小
     // chainWebpack: config => {

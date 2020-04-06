@@ -5,7 +5,7 @@
       <div class="company">{{companyName}}</div>
       <div class="nav-logo">
         <i class="line"></i>
-        <a class="logo-box"></a>
+        <router-link class="logo-box" to="/blocPage"></router-link>
       </div>
       <div class="name" v-if="showName && $exe.installation">{{titleName}}</div>
       <div class="nav" v-else>
