@@ -29,7 +29,7 @@
                   @click="setCamera(item0.areaName, item.pid)"
                   title="点击播放该项目下所有视频"
                 ></i>
-                <p @click="setCamera(item0.areaName, item.pid)">{{item.projectName}}</p>
+                <p @click="setCamera(item0.areaName, item.pid)" id="onlyArea">{{item.projectName}}</p>
                 <i class="el-icon-caret-right"></i>
               </div>
               <!-- 摄像头列表 -->
@@ -514,6 +514,9 @@ export default {
     this.getVideo();
     this.talkback();
     this.getImgList();
+    setTimeout(() => {
+      document.getElementById('onlyArea').click()
+    }, 500)
   },
   methods: {
     // 获取视频列表
@@ -2655,7 +2658,7 @@ export default {
           font-size: 0.16rem;
           p {
             display: inline-block;
-            width: 2.1rem;
+            width: 2rem;
             vertical-align: text-top;
           }
           span {

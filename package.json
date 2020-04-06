@@ -54,6 +54,10 @@
     "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
+    },
+    "globals": {
+      "EZUIPlayer": true,
+      "AMap": true
     }
   },
   "postcss": {

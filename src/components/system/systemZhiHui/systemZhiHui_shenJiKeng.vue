@@ -1277,31 +1277,33 @@
       border-right: 0.1rem solid #f7f7f7;
       .button-box {
         height: 1.45rem;
-        padding-top: 0.25rem;
+        padding: 0.25rem .1rem;
         border-bottom: 0.1rem solid #f7f7f7;
         .botton-button {
-          a {
-            margin-top: 0.25rem;
-          }
+          margin-top: 0.25rem;
+        }
+        .top-button {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: nowrap;
         }
         a {
-          float: left;
-          height: 0.3rem;
+          display: inline-block;
           color: #0090ff;
           font-size: 0.12rem;
           transition: all 0.5s;
-          margin-left: 0.24rem;
-          line-height: 0.28rem;
+          line-height: 0.3rem;
           border-radius: 0.02rem;
           padding-right: 0.09rem;
           border: 0.01rem solid #0090ff;
+          white-space: nowrap;
           &:hover {
             color: #fff;
             background-color: #0090ff;
           }
           .icon {
             width: 0.37rem;
-            height: 0.28rem;
+            height: 0.3rem;
             transition: all 0.5s;
             display: inline-block;
             vertical-align: top;
@@ -2410,7 +2412,7 @@ export default {
     // 获取测点水位数据
     getStage(num, size) {
       this.$axios
-        .post(`/api/hjDeeppit/getFactorData?factorId=${this.stageListChild}&date=${this.nowTime}&pageNum=${num || this.pageNum}&pageSize=${size || this.pageSize}`)
+        .post(`/api/hjDeeppit/getFactorData?factorId=${this.stageListChild}&date=${this.nowTime}&pageNum=${num || this.pageNum}&pageSize=${size || this.pageSize}&endTime=`)
         .then(res => {
           if (!size) {
             // this.stageHistoryTable = res.data.data
@@ -2423,7 +2425,7 @@ export default {
     // 获取测点位移数据
     getOffset(num, size) {
       this.$axios
-        .post(`/api/hjDeeppit/getFactorData?factorId=${this.offsetListChild}&date=${this.nowTime}&pageNum=${num || this.pageNum}&pageSize=${size || this.pageSize}`)
+        .post(`/api/hjDeeppit/getFactorData?factorId=${this.offsetListChild}&date=${this.nowTime}&pageNum=${num || this.pageNum}&pageSize=${size || this.pageSize}&endTime=`)
         .then(res => {
           if (!size) {
             // this.offsetHistoryTable = res.data.data
@@ -2436,7 +2438,7 @@ export default {
     // 获取测点沉降数据
     getSubside(num, size) {
       this.$axios
-        .post(`/api/hjDeeppit/getFactorData?factorId=${this.subsideListChild}&date=${this.nowTime}&pageNum=${num || this.pageNum}&pageSize=${size || this.pageSize}`)
+        .post(`/api/hjDeeppit/getFactorData?factorId=${this.subsideListChild}&date=${this.nowTime}&pageNum=${num || this.pageNum}&pageSize=${size || this.pageSize}&endTime=`)
         .then(res => {
           if (!size) {
             // this.subsideHistoryTable = res.data.data
@@ -2449,7 +2451,7 @@ export default {
     // 获取测点结构数据
     getProduct(num, size) {
       this.$axios
-        .post(`/api/hjDeeppit/getFactorData?factorId=${this.productListChild}&date=${this.nowTime}&pageNum=${num || this.pageNum}&pageSize=${size || this.pageSize}`)
+        .post(`/api/hjDeeppit/getFactorData?factorId=${this.productListChild}&date=${this.nowTime}&pageNum=${num || this.pageNum}&pageSize=${size || this.pageSize}&endTime=`)
         .then(res => {
           if (!size) {
             // this.productHistoryTable = res.data.data
@@ -2462,7 +2464,7 @@ export default {
     // 获取测点倾斜数据
     getBias(num, size) {
       this.$axios
-        .post(`/api/hjDeeppit/getFactorData?factorId=${this.biasListChild}&date=${this.nowTime}&pageNum=${num || this.pageNum}&pageSize=${size || this.pageSize}`)
+        .post(`/api/hjDeeppit/getFactorData?factorId=${this.biasListChild}&date=${this.nowTime}&pageNum=${num || this.pageNum}&pageSize=${size || this.pageSize}&endTime=`)
         .then(res => {
           if (!size) {
             // this.biasHistoryTable = res.data.data
@@ -2696,7 +2698,7 @@ export default {
             this.stageHistoryEcharts = res.data
           })
         this.$axios
-          .post(`/api/hjDeeppit/getFactorData?factorId=${this.stageListChild}&startTime=${startTime}&endTime=${endTime}&pageSize=${this.pageSize}&pageNum=${this.pageNum}`)
+          .post(`/api/hjDeeppit/getFactorData?factorId=${this.stageListChild}&date=${startTime}&endTime=${endTime}&pageSize=${this.pageSize}&pageNum=${this.pageNum}`)
           .then(res => {
             this.stageHistoryTable = res.data.data
             this.historyStageTolal = res.data.sum
@@ -2729,7 +2731,7 @@ export default {
             this.offsetHistoryEcharts = res.data
           })
         this.$axios
-          .post(`/api/hjDeeppit/getFactorData?factorId=${this.offsetListChild}&startTime=${startTime}&endTime=${endTime}&pageSize=${this.pageSize}&pageNum=${this.pageNum}`)
+          .post(`/api/hjDeeppit/getFactorData?factorId=${this.offsetListChild}&date=${startTime}&endTime=${endTime}&pageSize=${this.pageSize}&pageNum=${this.pageNum}`)
           .then(res => {
             this.offsetHistoryTable = res.data.data
             this.historyOffsetTolal = res.data.sum
@@ -2762,7 +2764,7 @@ export default {
             this.subsideHistoryEcharts = res.data
           })
         this.$axios
-          .post(`/api/hjDeeppit/getFactorData?factorId=${this.subsideListChild}&startTime=${startTime}&endTime=${endTime}&pageSize=${this.pageSize}&pageNum=${this.pageNum}`)
+          .post(`/api/hjDeeppit/getFactorData?factorId=${this.subsideListChild}&date=${startTime}&endTime=${endTime}&pageSize=${this.pageSize}&pageNum=${this.pageNum}`)
           .then(res => {
             this.subsideHistoryTable = res.data.data
             this.historySubsideTolal = res.data.sum
@@ -2795,7 +2797,7 @@ export default {
             this.productHistoryEcharts = res.data
           })
         this.$axios
-          .post(`/api/hjDeeppit/getFactorData?factorId=${this.productListChild}&startTime=${startTime}&endTime=${endTime}&pageSize=${this.pageSize}&pageNum=${this.pageNum}`)
+          .post(`/api/hjDeeppit/getFactorData?factorId=${this.productListChild}&date=${startTime}&endTime=${endTime}&pageSize=${this.pageSize}&pageNum=${this.pageNum}`)
           .then(res => {
             this.productHistoryTable = res.data.data
             this.historyProductTolal = res.data.sum
@@ -2828,7 +2830,7 @@ export default {
             this.biasHistoryEcharts = res.data
           })
         this.$axios
-          .post(`/api/hjDeeppit/getFactorData?factorId=${this.biasListChild}&startTime=${startTime}&endTime=${endTime}&pageSize=${this.pageSize}&pageNum=${this.pageNum}`)
+          .post(`/api/hjDeeppit/getFactorData?factorId=${this.biasListChild}&date=${startTime}&endTime=${endTime}&pageSize=${this.pageSize}&pageNum=${this.pageNum}`)
           .then(res => {
             this.biasHistoryTable = res.data.data
             this.historyBiasTolal = res.data.sum
